@@ -1,0 +1,171 @@
+summary_id,subject_id,hadm_id,charttime,generated_text,prompt,model_used,created_at
+1,2,163353,2138-07-17 21:10:00,"- Bands: 1.0 % - Immature white blood cells appear within the expected range.
+- Hematocrit: 49.6 % - Red blood cell volume appears generally within the expected range.
+- Hemoglobin: 16.5 g/dL - May reflect a higher amount of oxygen-carrying protein in the blood.
+- Lymphocytes: 19.0 % - Can suggest an immune response, such as infection or inflammation.
+- MCH: 34.4 pg - May reflect a lower amount of hemoglobin in red blood cells.
+- MCHC: 33.3 % - Average hemoglobin in red blood cells appears generally within the expected range.
+- MCV: 103.0 fL - May reflect larger than normal red blood cells.
+- Monocytes: 10.0 % - Immune cells appear within the expected range.
+- Neutrophils: 70.0 % - Can suggest an immune response, such as infection or inflammation.
+- Nucleated Red Cells: 1.0 % - Immature red blood cells may be present in the blood.
+- Platelet Count: 302.0 K/uL - Blood clotting cells appear within the expected range.
+- RDW: 15.5 % - Red blood cell size variation appears generally within the expected range.
+- Red Blood Cells: 4.81 m/uL - Red blood cells appear within the expected range.
+- White Blood Cells: 22.0 K/uL - Can suggest an immune response, such as infection or inflammation.
+
+General Overview: The results show some variations in blood cell counts and characteristics, which may reflect an immune response or other underlying conditions.","You are writing patient-friendly explanations of laboratory test results.
+
+Task:
+For each blood test result, write exactly one very short sentence explaining what this result may suggest in the body.
+
+Return the answer in exactly this format:
+
+- Test Name: value unit - one short explanation.
+- Test Name: value unit - one short explanation.
+
+General Overview: one short paragraph summarizing the overall pattern.
+
+Strict rules:
+- Use one bullet line per test.
+- Keep the tests in the same order as the input.
+- Each bullet must follow exactly this pattern:
+  - Test Name: value unit - Explanation.
+- Include the test name, value, and unit exactly as given.
+- Write only one sentence after the dash.
+- Keep each explanation under 18 words.
+- Use simple language for a non-medical reader.
+- Use cautious wording such as ""may suggest"", ""can suggest"", ""may reflect"", or ""appears"".
+- If the result is normal, say what body function appears generally within the expected range.
+- If the result is abnormal, explain the possible body system involved.
+- Do not diagnose diseases.
+- Do not recommend treatment.
+- Do not say the body ""is"" damaged, failing, or diseased.
+- End with exactly one paragraph starting with:
+  General Overview:
+- Do not add any other headers, numbering, markdown tables, or extra text.
+
+Example output style:
+- Hemoglobin: 10.5 g/dL - May reflect a lower amount of oxygen-carrying protein in the blood.
+- White Blood Cells: 12.0 K/uL - Can suggest an immune response, such as infection or inflammation.
+
+General Overview: The results show ...
+
+BLOOD TEST RESULTS:
+
+- Bands: 1.0 % [normal]
+- Hematocrit: 49.6 % [normal]
+- Hemoglobin: 16.5 g/dL [abnormal]
+- Lymphocytes: 19.0 % [abnormal]
+- MCH: 34.4 pg [abnormal]
+- MCHC: 33.3 % [normal]
+- MCV: 103.0 fL [abnormal]
+- Monocytes: 10.0 % [normal]
+- Neutrophils: 70.0 % [abnormal]
+- Nucleated Red Cells: 1.0 % [abnormal]
+- Platelet Count: 302.0 K/uL [normal]
+- RDW: 15.5 % [normal]
+- Red Blood Cells: 4.81 m/uL [normal]
+- White Blood Cells: 22.0 K/uL [abnormal]",meta/llama-3.1-70b-instruct,2026-05-18 22:36:55.078651
+2,3,145834,2101-10-21 03:00:00,"- Anion Gap: 19.0 mEq/L - Appears within the expected range for acid-base balance.
+- Bicarbonate: 13.0 mEq/L - May suggest an imbalance in acid-base levels.
+- Calcium, Total: 6.7 mg/dL - May reflect a lower amount of calcium in the blood.
+- Chloride: 110.0 mEq/L - Appears within the expected range for fluid balance.
+- CK-MB Index: 12.9 % - Can suggest heart muscle damage or stress.
+- Creatine Kinase (CK): 371.0 IU/L - May reflect muscle damage or stress.
+- Creatine Kinase, MB Isoenzyme: 48.0 ng/mL - Can suggest heart muscle damage or stress.
+- Creatinine: 2.5 mg/dL - May reflect a decrease in kidney function.
+- Glucose: 293.0 mg/dL - May suggest high blood sugar levels.
+- Magnesium: 2.3 mg/dL - Appears within the expected range for muscle and nerve function.
+- Osmolality, Measured: 312.0 mOsm/kg - May reflect an imbalance in fluid balance.
+- Phosphate: 4.7 mg/dL - May reflect a higher amount of phosphate in the blood.
+- Potassium: 4.4 mEq/L - Appears within the expected range for heart function.
+- Sodium: 138.0 mEq/L - Appears within the expected range for fluid balance.
+- Urea Nitrogen: 42.0 mg/dL - May reflect a decrease in kidney function.
+- Bands: 5.0 % - Appears within the expected range for immune response.
+- Hematocrit: 30.3 % - May reflect a lower amount of red blood cells.
+- Hemoglobin: 9.7 g/dL - May reflect a lower amount of oxygen-carrying protein.
+- INR(PT): 1.5 no unit - Appears within the expected range for blood clotting.
+- Lymphocytes: 3.0 % - May reflect a lower amount of immune cells.
+- MCH: 29.5 pg - Appears within the expected range for red blood cell size.
+- MCHC: 32.1 % - Appears within the expected range for red blood cell size.
+- MCV: 92.0 fL - Appears within the expected range for red blood cell size.
+- Monocytes: 5.0 % - Appears within the expected range for immune response.
+- Neutrophils: 87.0 % - May reflect an increase in immune response.
+- Platelet Count: 359.0 K/uL - Appears within the expected range for blood clotting.
+- PT: 14.4 SECONDS - May reflect a decrease in blood clotting function.
+- PTT: 36.2 sec - May reflect a decrease in blood clotting function.
+- RDW: 15.4 % - Appears within the expected range for red blood cell size.
+- Red Blood Cells: 3.3 m/uL - May reflect a lower amount of red blood cells.
+- White Blood Cells: 24.4 K/uL - May reflect an increase in immune response.
+
+General Overview: The results show signs of possible kidney function decrease, high blood sugar levels, and muscle damage or stress, along with an imbalance in acid-base levels and fluid balance, and a potential decrease in blood clotting function.","You are writing patient-friendly explanations of laboratory test results.
+
+Task:
+For each blood test result, write exactly one very short sentence explaining what this result may suggest in the body.
+
+Return the answer in exactly this format:
+
+- Test Name: value unit - one short explanation.
+- Test Name: value unit - one short explanation.
+
+General Overview: one short paragraph summarizing the overall pattern.
+
+Strict rules:
+- Use one bullet line per test.
+- Keep the tests in the same order as the input.
+- Each bullet must follow exactly this pattern:
+  - Test Name: value unit - Explanation.
+- Include the test name, value, and unit exactly as given.
+- Write only one sentence after the dash.
+- Keep each explanation under 18 words.
+- Use simple language for a non-medical reader.
+- Use cautious wording such as ""may suggest"", ""can suggest"", ""may reflect"", or ""appears"".
+- If the result is normal, say what body function appears generally within the expected range.
+- If the result is abnormal, explain the possible body system involved.
+- Do not diagnose diseases.
+- Do not recommend treatment.
+- Do not say the body ""is"" damaged, failing, or diseased.
+- End with exactly one paragraph starting with:
+  General Overview:
+- Do not add any other headers, numbering, markdown tables, or extra text.
+
+Example output style:
+- Hemoglobin: 10.5 g/dL - May reflect a lower amount of oxygen-carrying protein in the blood.
+- White Blood Cells: 12.0 K/uL - Can suggest an immune response, such as infection or inflammation.
+
+General Overview: The results show ...
+
+BLOOD TEST RESULTS:
+
+- Anion Gap: 19.0 mEq/L [normal]
+- Bicarbonate: 13.0 mEq/L [abnormal]
+- Calcium, Total: 6.7 mg/dL [abnormal]
+- Chloride: 110.0 mEq/L [normal]
+- CK-MB Index: 12.9 % [abnormal]
+- Creatine Kinase (CK): 371.0 IU/L [abnormal]
+- Creatine Kinase, MB Isoenzyme: 48.0 ng/mL [abnormal]
+- Creatinine: 2.5 mg/dL [abnormal]
+- Glucose: 293.0 mg/dL [abnormal]
+- Magnesium: 2.3 mg/dL [normal]
+- Osmolality, Measured: 312.0 mOsm/kg [abnormal]
+- Phosphate: 4.7 mg/dL [abnormal]
+- Potassium: 4.4 mEq/L [normal]
+- Sodium: 138.0 mEq/L [normal]
+- Urea Nitrogen: 42.0 mg/dL [abnormal]
+- Bands: 5.0 % [normal]
+- Hematocrit: 30.3 % [abnormal]
+- Hemoglobin: 9.7 g/dL [abnormal]
+- INR(PT): 1.5 no unit [normal]
+- Lymphocytes: 3.0 % [abnormal]
+- MCH: 29.5 pg [normal]
+- MCHC: 32.1 % [normal]
+- MCV: 92.0 fL [normal]
+- Monocytes: 5.0 % [normal]
+- Neutrophils: 87.0 % [abnormal]
+- Platelet Count: 359.0 K/uL [normal]
+- PT: 14.4 SECONDS [abnormal]
+- PTT: 36.2 sec [abnormal]
+- RDW: 15.4 % [normal]
+- Red Blood Cells: 3.3 m/uL [abnormal]
+- White Blood Cells: 24.4 K/uL [abnormal]",meta/llama-3.1-70b-instruct,2026-05-18 22:40:04.769801

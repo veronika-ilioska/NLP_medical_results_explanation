@@ -1,0 +1,30 @@
+import sys
+import pandas as pd
+
+if len(sys.argv) < 2:
+    print("Usage: python inspect_patient.py <subject_id>")
+    sys.exit(1)
+
+subject_id = int(sys.argv[1])
+
+df = pd.read_csv('data/mimic_labs_for_generation.csv', header=None, names=[
+    'subject_id', 'hadm_id', 'itemid', 'label', 'fluid', 'category',
+    'loinc_code', 'charttime', 'value', 'valuenum', 'valueuom',
+    'flag', 'gender', 'admission_type', 'diagnosis', 'prompt'
+])
+
+patient = df[df['SUBJECT_ID'] == subject_id]
+
+if patient.empty:
+    print(f"No data found for subject_id {subject_id}")
+    sys.exit(1)
+
+print(f"Patient {subject_id} | "
+      f"hadm_id: {patient['hadm_id'].iloc[0]} | "
+      f"gender: {patient['gender'].iloc[0]} | "
+      f"admission: {patient['admission_type'].iloc[0]}")
+print(f"Diagnosis: {patient['diagnosis'].iloc[0]}")
+
+for charttime, panel in patient.groupby('charttime'):
+    print(f"\n--- Draw @ {charttime} ---")
+    print(panel[['label', 'category', 'valuenum', 'valueuom', 'flag']].to_string(index=False))
