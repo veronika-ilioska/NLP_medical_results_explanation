@@ -17,32 +17,45 @@ The current fine-tuning scripts support both:
 ```text
 data/
   lab_summaries_export.csv          Llama-generated panel explanations
+  lab_summaries_export_10.csv       Small panel-explanation sample
+  llama_tabular_outputs.csv         Row-level Llama adapter test outputs
   medgemma_1000_outputs.csv         MedGemma row-level outputs
   medgemma_20_outputs.csv           Small MedGemma test output
   mimic_labs_20_for_testing.csv     Small lab input sample
   mimic_labs_for_generation.csv     Larger lab input file
   finetune/                         MedGemma JSONL fine-tuning data
   finetune_llama/                   Llama JSONL fine-tuning data
+  finetune_llama_10/                Small Llama JSONL fine-tuning sample
 
 scripts/
+  common/
+    lab_prompt.py                   Shared lab prompt/message helpers
   db/
     create_tables.py
     export_lab_summaries_csv.py
+  finetune/
+    prepare_sft_dataset.py
+    train_medgemma_lora.py
+    train_llama_lora.py
   generate_input_csv/
     generate_input.py
   silver_standard/
+    fill_row_target_text.py         Fill row-level target_text silver references
     generate_silver_standard.py
     generate_silver_standard_llama.py
     NLP_medgemma_base.ipynb
   testing/
     check_dataset.py
     create_20_sample.py
+    evaluate_tablellm_cv.py         Cross-validation metrics and charts
+    generate_tablellm_output_text.py Generate output_text with TableLLM
+    patient_info_from_csv
     test_medgemma_one.py
     test_llama_lora.py
-  finetune/
-    prepare_sft_dataset.py
-    train_medgemma_lora.py
-    train_llama_lora.py
+
+outputs/
+  llama/                            Local/generated Llama outputs
+  trainllm_cv/                      Local/generated TableLLM evaluation outputs
 ```
 
 ## Data Files
@@ -427,15 +440,43 @@ python scripts\testing\evaluate_tablellm_cv.py `
   --output-dir outputs\tablellm_cv_real
 ```
 
-For Colab, open:
+To generate a separate `output_text` column with TableLLM before evaluating,
+run this on a GPU machine or Colab GPU runtime:
 
-```text
-scripts/testing/evaluate_tablellm_cv_colab.ipynb
+```powershell
+python scripts\testing\generate_tablellm_output_text.py `
+  --input data\llama_tabular_outputs_with_targets.csv `
+  --output data\llama_tabular_outputs_with_tablellm.csv `
+  --prompt-column input_text `
+  --output-column output_text `
+  --model-id RUCKBReasoning/TableLLM-8b `
+  --load-4bit `
+  --max-rows 10
+
+python scripts\testing\evaluate_tablellm_cv.py `
+  --input data\llama_tabular_outputs_with_tablellm.csv `
+  --prompt-column input_text `
+  --target-column target_text `
+  --prediction-column output_text `
+  --folds 5 `
+  --output-dir outputs\tablellm_output_text_eval
 ```
 
-In the first notebook cell, set `PROJECT_DIR` to the uploaded, cloned, or
-Google Drive copy of this repository. Use a GPU runtime only when running the
-optional direct `RUCKBReasoning/TableLLM-8b` inference cells.
+For Colab, clone or pull the repository, install `requirements-colab.txt`, and
+run the same commands with shell cells. Use a GPU runtime only for direct
+`RUCKBReasoning/TableLLM-8b` inference:
+
+```python
+%cd /content/NLP_medical_results_explanation
+!pip install -q -r requirements-colab.txt
+!python scripts/testing/evaluate_tablellm_cv.py \
+  --input data/lab_summaries_export.csv \
+  --prompt-column prompt \
+  --target-column generated_text \
+  --prediction-column generated_text \
+  --folds 5 \
+  --output-dir outputs/tablellm_cv
+```
 
 ## Generate More Llama Training Data
 
