@@ -284,7 +284,14 @@ def build_prompt_from_row(row, args):
 
 def load_tablellm(args):
     import torch
+    import transformers.utils as transformers_utils
+    import transformers.utils.import_utils as transformers_import_utils
     from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+
+    # This project is text-only. Colab often has a torch/torchvision mismatch
+    # that crashes Transformers while importing optional vision helpers.
+    transformers_import_utils.is_torchvision_available = lambda: False
+    transformers_utils.is_torchvision_available = lambda: False
 
     token = os.getenv("HF_TOKEN")
     tokenizer = AutoTokenizer.from_pretrained(args.model_id, token=token)

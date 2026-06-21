@@ -468,6 +468,7 @@ run the same commands with shell cells. Use a GPU runtime only for direct
 
 ```python
 %cd /content/NLP_medical_results_explanation
+!pip uninstall -y torchvision torchao
 !pip install -q -r requirements-colab.txt
 !python scripts/testing/evaluate_tablellm_cv.py \
   --input data/lab_summaries_export.csv \
