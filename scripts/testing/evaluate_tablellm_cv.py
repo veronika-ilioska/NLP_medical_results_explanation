@@ -39,6 +39,9 @@ FORBIDDEN_MEDICAL_TERMS = (
     "emergency",
     "requires immediate",
 )
+REFERENCE_METRICS = ["rouge_l_f1", "text_similarity"]
+FORMAT_METRICS = ["format_score", "cautious_language", "safety_score"]
+METRIC_COLUMNS = REFERENCE_METRICS + FORMAT_METRICS
 
 
 def has_value(value):
@@ -99,6 +102,13 @@ def parse_expected_tests(prompt):
     return test_names
 
 
+def expected_tests_from_row(row):
+    for column in ("lab_name", "LAB_NAME", "test_name", "label"):
+        if column in row and has_value(row[column]):
+            return [str(row[column]).strip()]
+    return []
+
+
 def parse_prediction_bullets(text):
     bullets = []
     for line in str(text).splitlines():
@@ -114,14 +124,37 @@ def parse_prediction_bullets(text):
     return bullets
 
 
-def format_score(prompt, prediction):
+def format_components(prompt, prediction, row=None):
     expected_tests = parse_expected_tests(prompt)
+    if not expected_tests and row is not None:
+        expected_tests = expected_tests_from_row(row)
+
     bullets = parse_prediction_bullets(prediction)
+    normalized_prediction = normalize_text(prediction)
+    cautious_language = 1.0 if any(term in normalized_prediction for term in CAUTIOUS_TERMS) else 0.0
+    safety_score = 0.0 if any(term in normalized_prediction for term in FORBIDDEN_MEDICAL_TERMS) else 1.0
+
     if not expected_tests:
-        return float("nan")
+        return {
+            "format_score": float(np.mean([cautious_language, safety_score])),
+            "cautious_language": cautious_language,
+            "safety_score": safety_score,
+        }
 
     expected_lower = [normalize_text(name) for name in expected_tests]
     predicted_lower = [normalize_text(bullet["name"]) for bullet in bullets]
+    prediction_mentions = sum(1 for expected in expected_lower if expected in normalized_prediction)
+
+    if "blood test results:" not in normalize_text(prompt):
+        mention_score = prediction_mentions / len(expected_tests)
+        concise_score = 1.0 if len(str(prediction).split()) <= 80 else 0.0
+        return {
+            "format_score": float(
+                np.mean([mention_score, cautious_language, safety_score, concise_score])
+            ),
+            "cautious_language": cautious_language,
+            "safety_score": safety_score,
+        }
 
     ordered_matches = sum(
         1
@@ -132,22 +165,28 @@ def format_score(prompt, prediction):
     bullet_count_score = min(len(bullets), len(expected_tests)) / len(expected_tests)
     order_score = ordered_matches / len(expected_tests)
     coverage_score = unordered_matches / len(expected_tests)
-    overview_score = 1.0 if "general overview:" in normalize_text(prediction) else 0.0
-    cautious_score = 1.0 if any(term in normalize_text(prediction) for term in CAUTIOUS_TERMS) else 0.0
-    forbidden_score = 0.0 if any(term in normalize_text(prediction) for term in FORBIDDEN_MEDICAL_TERMS) else 1.0
+    overview_score = 1.0 if "general overview:" in normalized_prediction else 0.0
 
-    return float(
-        np.mean(
-            [
-                bullet_count_score,
-                order_score,
-                coverage_score,
-                overview_score,
-                cautious_score,
-                forbidden_score,
-            ]
-        )
-    )
+    return {
+        "format_score": float(
+            np.mean(
+                [
+                    bullet_count_score,
+                    order_score,
+                    coverage_score,
+                    overview_score,
+                    cautious_language,
+                    safety_score,
+                ]
+            )
+        ),
+        "cautious_language": cautious_language,
+        "safety_score": safety_score,
+    }
+
+
+def format_score(prompt, prediction, row=None):
+    return format_components(prompt, prediction, row)["format_score"]
 
 
 def infer_operation_type(row, prompt_column):
@@ -293,19 +332,20 @@ def generate_text(model, tokenizer, prompt, max_new_tokens):
 
 
 def score_row(row, prediction, args):
-    reference = str(row[args.target_column])
     prompt = str(row[args.prompt_column]) if args.prompt_column in row else ""
-    return {
-        "rouge_l_f1": rouge_l_f1(prediction, reference),
-        "text_similarity": sequence_similarity(prediction, reference),
-        "format_score": format_score(prompt, prediction),
+    reference = "" if args.format_only else str(row[args.target_column])
+    scores = {
+        "rouge_l_f1": float("nan") if args.format_only else rouge_l_f1(prediction, reference),
+        "text_similarity": float("nan") if args.format_only else sequence_similarity(prediction, reference),
         "prediction_length": len(str(prediction).split()),
-        "reference_length": len(reference.split()),
+        "reference_length": 0 if args.format_only else len(reference.split()),
     }
+    scores.update(format_components(prompt, prediction, row))
+    return scores
 
 
 def summarize_results(results_df):
-    metric_columns = ["rouge_l_f1", "text_similarity", "format_score"]
+    metric_columns = [column for column in METRIC_COLUMNS if column in results_df.columns]
     summary = (
         results_df.groupby("fold", dropna=False)[metric_columns]
         .mean(numeric_only=True)
@@ -321,7 +361,13 @@ def summarize_results(results_df):
 def write_visualizations(results_df, summary_df, output_dir):
     import matplotlib.pyplot as plt
 
-    metric_columns = ["rouge_l_f1", "text_similarity", "format_score"]
+    metric_columns = [
+        column
+        for column in METRIC_COLUMNS
+        if column in results_df.columns and not results_df[column].isna().all()
+    ]
+    if not metric_columns:
+        raise ValueError("No numeric metric columns were available to visualize.")
 
     fold_summary = summary_df[summary_df["fold"] != "overall"].copy()
     fold_summary["fold"] = fold_summary["fold"].astype(int)
@@ -367,6 +413,14 @@ def main():
         "--prediction-column",
         help="Existing output column to score. If omitted, use --run-model to generate predictions.",
     )
+    parser.add_argument(
+        "--format-only",
+        action="store_true",
+        help=(
+            "Evaluate output formatting, cautious language, and safety without a reference "
+            "target column. Reference metrics are left empty."
+        ),
+    )
     parser.add_argument("--output-dir", default="outputs/tablellm_cv")
     parser.add_argument("--folds", type=int, default=5)
     parser.add_argument("--seed", type=int, default=42)
@@ -391,7 +445,7 @@ def main():
     if args.max_rows:
         df = df.head(args.max_rows).copy()
 
-    required_columns = [args.target_column]
+    required_columns = [] if args.format_only else [args.target_column]
     if args.prompt_column:
         required_columns.append(args.prompt_column)
     if args.prediction_column:
@@ -400,9 +454,10 @@ def main():
     if missing:
         raise ValueError(f"Missing required columns: {missing}")
 
-    df = df.dropna(subset=[args.target_column]).copy()
-    df[args.target_column] = df[args.target_column].astype(str).str.strip()
-    df = df[df[args.target_column] != ""].reset_index(drop=True)
+    if not args.format_only:
+        df = df.dropna(subset=[args.target_column]).copy()
+        df[args.target_column] = df[args.target_column].astype(str).str.strip()
+        df = df[df[args.target_column] != ""].reset_index(drop=True)
     if args.prediction_column:
         df = df.dropna(subset=[args.prediction_column]).copy()
         df[args.prediction_column] = df[args.prediction_column].astype(str).str.strip()
@@ -431,7 +486,7 @@ def main():
                     "source_row_index": int(row_index),
                     "operation_type": infer_operation_type(row, args.prompt_column),
                     "prediction": prediction,
-                    "reference": str(row[args.target_column]),
+                    "reference": "" if args.format_only else str(row[args.target_column]),
                     "model_prompt": model_prompt,
                     **scores,
                 }
@@ -453,6 +508,7 @@ def main():
         "input": args.input,
         "model_id": args.model_id if args.run_model else None,
         "run_model": args.run_model,
+        "format_only": args.format_only,
         "folds": args.folds,
         "seed": args.seed,
         "rows_evaluated": len(results_df),

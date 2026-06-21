@@ -396,6 +396,20 @@ python scripts\testing\evaluate_tablellm_cv.py `
 
 The script writes detailed row scores, fold summaries, metadata, and PNG charts.
 
+When a CSV has predictions but no reference answers, use format-only mode. This
+is useful for `data/llama_tabular_outputs.csv`, where `target_text` can be
+empty:
+
+```powershell
+python scripts\testing\evaluate_tablellm_cv.py `
+  --input data\llama_tabular_outputs.csv `
+  --prompt-column input_text `
+  --prediction-column fine_tuned_output `
+  --folds 5 `
+  --format-only `
+  --output-dir outputs\tablellm_format_eval
+```
+
 For Colab, open:
 
 ```text
