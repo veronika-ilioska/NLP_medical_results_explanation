@@ -410,6 +410,23 @@ python scripts\testing\evaluate_tablellm_cv.py `
   --output-dir outputs\tablellm_format_eval
 ```
 
+To create row-level silver reference targets first, fill `target_text` into a
+new CSV and then run reference-based evaluation:
+
+```powershell
+python scripts\silver_standard\fill_row_target_text.py `
+  --input data\llama_tabular_outputs.csv `
+  --output data\llama_tabular_outputs_with_targets.csv
+
+python scripts\testing\evaluate_tablellm_cv.py `
+  --input data\llama_tabular_outputs_with_targets.csv `
+  --prompt-column input_text `
+  --target-column target_text `
+  --prediction-column fine_tuned_output `
+  --folds 5 `
+  --output-dir outputs\tablellm_cv_real
+```
+
 For Colab, open:
 
 ```text
