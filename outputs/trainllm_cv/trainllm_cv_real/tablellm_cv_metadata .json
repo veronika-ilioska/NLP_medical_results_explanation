@@ -1,0 +1,18 @@
+{
+  "input": "data/llama_tabular_outputs_with_targets.csv",
+  "model_id": null,
+  "run_model": false,
+  "format_only": false,
+  "folds": 5,
+  "seed": 42,
+  "rows_evaluated": 10,
+  "tablellm_prompt": "text",
+  "outputs": {
+    "results": "outputs/tablellm_cv_real/tablellm_cv_results.csv",
+    "summary": "outputs/tablellm_cv_real/tablellm_cv_summary.csv",
+    "charts": [
+      "outputs/tablellm_cv_real/tablellm_cv_fold_scores.png",
+      "outputs/tablellm_cv_real/tablellm_cv_operation_scores.png"
+    ]
+  }
+}

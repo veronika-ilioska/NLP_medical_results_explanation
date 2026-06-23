@@ -2,6 +2,7 @@
 pandas
 numpy
 numexpr
+matplotlib
 
 # Hugging Face / model training and inference
 torch
