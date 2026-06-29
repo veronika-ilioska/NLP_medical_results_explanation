@@ -1,0 +1,4 @@
+# Optional local notebook support.
+# On Windows/OneDrive this can hit long path limits; install only if needed.
+jupyter
+ipykernel

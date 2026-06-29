@@ -1,0 +1,391 @@
+SUBJECT_ID,HADM_ID,ITEMID,lab_name,fluid,category,loinc_code,CHARTTIME,VALUE,VALUENUM,VALUEUOM,FLAG,GENDER,ADMISSION_TYPE,DIAGNOSIS,input_text,fine_tuned_llama_tabular_prompt,fine_tuned_llama_tabular_output,target_text
+585,123154,50820,pH,Blood,Blood Gas,11558-4,2142-11-10 17:41:00,7.32,7.32,units,abnormal,F,EMERGENCY,STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES,"Patient sex: F
+Admission type: EMERGENCY
+Admission diagnosis: STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES
+
+Laboratory test: pH
+Fluid: Blood
+Category: Blood Gas
+Measured value: 7.32 units
+Abnormal flag: abnormal
+
+Task: Generate a short medical explanation of this laboratory result.","<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+Cutting Knowledge Date: December 2023
+Today Date: 26 Jul 2024
+
+You produce concise, patient-friendly explanations of laboratory results. Use cautious wording, avoid diagnosis and do not recommend treatment.<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+Read the laboratory result in the table below.
+
+| field | value |
+| --- | --- |
+| Patient sex | F |
+| Admission type | EMERGENCY |
+| Admission diagnosis | STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES |
+| Laboratory test | pH |
+| Fluid | Blood |
+| Category | Blood Gas |
+| Measured value | 7.32 units |
+| Abnormal flag | abnormal |
+
+Task: Write one short, patient-friendly explanation of what this result may mean for the body.
+Rules:
+- Use simple language.
+- Use cautious wording such as may suggest, can suggest, may reflect, or appears.
+- Do not diagnose disease.
+- Do not recommend treatment.
+- Keep the answer to one or two short sentences.<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+","This blood gas result may suggest that the body's acid-base balance is slightly off, with a pH level that is lower than the normal range. This can be seen in people who have experienced severe illness or injury, such as a motor vehicle accident.",- pH: 7.32 units - May reflect a change in the body's acid-base balance.
+585,123154,50821,pO2,Blood,Blood Gas,11556-8,2142-11-10 17:41:00,236.0,236.0,mm Hg,abnormal,F,EMERGENCY,STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES,"Patient sex: F
+Admission type: EMERGENCY
+Admission diagnosis: STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES
+
+Laboratory test: pO2
+Fluid: Blood
+Category: Blood Gas
+Measured value: 236.0 mm Hg
+Abnormal flag: abnormal
+
+Task: Generate a short medical explanation of this laboratory result.","<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+Cutting Knowledge Date: December 2023
+Today Date: 26 Jul 2024
+
+You produce concise, patient-friendly explanations of laboratory results. Use cautious wording, avoid diagnosis and do not recommend treatment.<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+Read the laboratory result in the table below.
+
+| field | value |
+| --- | --- |
+| Patient sex | F |
+| Admission type | EMERGENCY |
+| Admission diagnosis | STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES |
+| Laboratory test | pO2 |
+| Fluid | Blood |
+| Category | Blood Gas |
+| Measured value | 236.0 mm Hg |
+| Abnormal flag | abnormal |
+
+Task: Write one short, patient-friendly explanation of what this result may mean for the body.
+Rules:
+- Use simple language.
+- Use cautious wording such as may suggest, can suggest, may reflect, or appears.
+- Do not diagnose disease.
+- Do not recommend treatment.
+- Keep the answer to one or two short sentences.<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+","This blood gas result may suggest that the patient's oxygen levels in the blood are higher than normal. This can be seen in people who have been receiving extra oxygen, possibly due to a medical treatment or device.",- pO2: 236.0 mm Hg - May reflect a change in oxygen levels in the blood.
+585,123154,50867,Amylase,Blood,Chemistry,1798-8,2142-11-10 19:58:00,64.0,64.0,IU/L,,F,EMERGENCY,STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES,"Patient sex: F
+Admission type: EMERGENCY
+Admission diagnosis: STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES
+
+Laboratory test: Amylase
+Fluid: Blood
+Category: Chemistry
+Measured value: 64.0 IU/L
+Abnormal flag: nan
+
+Task: Generate a short medical explanation of this laboratory result.","<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+Cutting Knowledge Date: December 2023
+Today Date: 26 Jul 2024
+
+You produce concise, patient-friendly explanations of laboratory results. Use cautious wording, avoid diagnosis and do not recommend treatment.<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+Read the laboratory result in the table below.
+
+| field | value |
+| --- | --- |
+| Patient sex | F |
+| Admission type | EMERGENCY |
+| Admission diagnosis | STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES |
+| Laboratory test | Amylase |
+| Fluid | Blood |
+| Category | Chemistry |
+| Measured value | 64.0 IU/L |
+| Abnormal flag | not available |
+
+Task: Write one short, patient-friendly explanation of what this result may mean for the body.
+Rules:
+- Use simple language.
+- Use cautious wording such as may suggest, can suggest, may reflect, or appears.
+- Do not diagnose disease.
+- Do not recommend treatment.
+- Keep the answer to one or two short sentences.<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+","This blood test result shows that the level of amylase in the blood is 64.0 IU/L. This may suggest that the pancreas is functioning normally, but it's also possible that there's a minor issue with the pancreas that's not causing any noticeable symptoms.",- Amylase: 64.0 IU/L - Appears generally within the expected range for body chemistry balance.
+585,123154,50868,Anion Gap,Blood,Chemistry,1863-0,2142-11-10 19:58:00,10.0,10.0,mEq/L,,F,EMERGENCY,STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES,"Patient sex: F
+Admission type: EMERGENCY
+Admission diagnosis: STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES
+
+Laboratory test: Anion Gap
+Fluid: Blood
+Category: Chemistry
+Measured value: 10.0 mEq/L
+Abnormal flag: nan
+
+Task: Generate a short medical explanation of this laboratory result.","<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+Cutting Knowledge Date: December 2023
+Today Date: 26 Jul 2024
+
+You produce concise, patient-friendly explanations of laboratory results. Use cautious wording, avoid diagnosis and do not recommend treatment.<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+Read the laboratory result in the table below.
+
+| field | value |
+| --- | --- |
+| Patient sex | F |
+| Admission type | EMERGENCY |
+| Admission diagnosis | STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES |
+| Laboratory test | Anion Gap |
+| Fluid | Blood |
+| Category | Chemistry |
+| Measured value | 10.0 mEq/L |
+| Abnormal flag | not available |
+
+Task: Write one short, patient-friendly explanation of what this result may mean for the body.
+Rules:
+- Use simple language.
+- Use cautious wording such as may suggest, can suggest, may reflect, or appears.
+- Do not diagnose disease.
+- Do not recommend treatment.
+- Keep the answer to one or two short sentences.<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+","This result may suggest that the body's balance of certain substances in the blood, such as sodium, chloride, and bicarbonate, may be slightly different than normal. However, more information is needed to understand the full meaning of this result.",- Anion Gap: 10.0 mEq/L - Appears generally within the expected range for body chemistry balance.
+585,123154,50882,Bicarbonate,Blood,Chemistry,1963-8,2142-11-10 19:58:00,18.0,18.0,mEq/L,abnormal,F,EMERGENCY,STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES,"Patient sex: F
+Admission type: EMERGENCY
+Admission diagnosis: STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES
+
+Laboratory test: Bicarbonate
+Fluid: Blood
+Category: Chemistry
+Measured value: 18.0 mEq/L
+Abnormal flag: abnormal
+
+Task: Generate a short medical explanation of this laboratory result.","<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+Cutting Knowledge Date: December 2023
+Today Date: 26 Jul 2024
+
+You produce concise, patient-friendly explanations of laboratory results. Use cautious wording, avoid diagnosis and do not recommend treatment.<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+Read the laboratory result in the table below.
+
+| field | value |
+| --- | --- |
+| Patient sex | F |
+| Admission type | EMERGENCY |
+| Admission diagnosis | STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES |
+| Laboratory test | Bicarbonate |
+| Fluid | Blood |
+| Category | Chemistry |
+| Measured value | 18.0 mEq/L |
+| Abnormal flag | abnormal |
+
+Task: Write one short, patient-friendly explanation of what this result may mean for the body.
+Rules:
+- Use simple language.
+- Use cautious wording such as may suggest, can suggest, may reflect, or appears.
+- Do not diagnose disease.
+- Do not recommend treatment.
+- Keep the answer to one or two short sentences.<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+","This blood test result shows that the level of bicarbonate in the blood is lower than what is typically expected. This may suggest that the body's acid-base balance may be slightly off, but more information is needed to understand the cause.",- Bicarbonate: 18.0 mEq/L - May reflect a change in the body's acid-base balance.
+585,123154,50893,"Calcium, Total",Blood,Chemistry,2000-8,2142-11-10 19:58:00,6.6,6.6,mg/dL,abnormal,F,EMERGENCY,STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES,"Patient sex: F
+Admission type: EMERGENCY
+Admission diagnosis: STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES
+
+Laboratory test: Calcium, Total
+Fluid: Blood
+Category: Chemistry
+Measured value: 6.6 mg/dL
+Abnormal flag: abnormal
+
+Task: Generate a short medical explanation of this laboratory result.","<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+Cutting Knowledge Date: December 2023
+Today Date: 26 Jul 2024
+
+You produce concise, patient-friendly explanations of laboratory results. Use cautious wording, avoid diagnosis and do not recommend treatment.<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+Read the laboratory result in the table below.
+
+| field | value |
+| --- | --- |
+| Patient sex | F |
+| Admission type | EMERGENCY |
+| Admission diagnosis | STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES |
+| Laboratory test | Calcium, Total |
+| Fluid | Blood |
+| Category | Chemistry |
+| Measured value | 6.6 mg/dL |
+| Abnormal flag | abnormal |
+
+Task: Write one short, patient-friendly explanation of what this result may mean for the body.
+Rules:
+- Use simple language.
+- Use cautious wording such as may suggest, can suggest, may reflect, or appears.
+- Do not diagnose disease.
+- Do not recommend treatment.
+- Keep the answer to one or two short sentences.<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+","This laboratory result may suggest that the calcium level in your blood is lower than what is typically considered normal. This can be a sign that your body may not be getting enough calcium, but more testing is needed to understand what this means for you.","- Calcium, Total: 6.6 mg/dL - May suggest a change in calcium balance in the blood."
+585,123154,50902,Chloride,Blood,Chemistry,2075-0,2142-11-10 19:58:00,119.0,119.0,mEq/L,abnormal,F,EMERGENCY,STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES,"Patient sex: F
+Admission type: EMERGENCY
+Admission diagnosis: STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES
+
+Laboratory test: Chloride
+Fluid: Blood
+Category: Chemistry
+Measured value: 119.0 mEq/L
+Abnormal flag: abnormal
+
+Task: Generate a short medical explanation of this laboratory result.","<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+Cutting Knowledge Date: December 2023
+Today Date: 26 Jul 2024
+
+You produce concise, patient-friendly explanations of laboratory results. Use cautious wording, avoid diagnosis and do not recommend treatment.<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+Read the laboratory result in the table below.
+
+| field | value |
+| --- | --- |
+| Patient sex | F |
+| Admission type | EMERGENCY |
+| Admission diagnosis | STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES |
+| Laboratory test | Chloride |
+| Fluid | Blood |
+| Category | Chemistry |
+| Measured value | 119.0 mEq/L |
+| Abnormal flag | abnormal |
+
+Task: Write one short, patient-friendly explanation of what this result may mean for the body.
+Rules:
+- Use simple language.
+- Use cautious wording such as may suggest, can suggest, may reflect, or appears.
+- Do not diagnose disease.
+- Do not recommend treatment.
+- Keep the answer to one or two short sentences.<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+","This laboratory result may suggest that the level of chloride in the blood is higher than what is typically considered normal. Elevated chloride levels can be seen in various conditions, but more information is needed to understand the cause.",- Chloride: 119.0 mEq/L - May reflect a change in fluid or acid-base balance.
+585,123154,50912,Creatinine,Blood,Chemistry,2160-0,2142-11-10 19:58:00,0.5,0.5,mg/dL,,F,EMERGENCY,STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES,"Patient sex: F
+Admission type: EMERGENCY
+Admission diagnosis: STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES
+
+Laboratory test: Creatinine
+Fluid: Blood
+Category: Chemistry
+Measured value: 0.5 mg/dL
+Abnormal flag: nan
+
+Task: Generate a short medical explanation of this laboratory result.","<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+Cutting Knowledge Date: December 2023
+Today Date: 26 Jul 2024
+
+You produce concise, patient-friendly explanations of laboratory results. Use cautious wording, avoid diagnosis and do not recommend treatment.<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+Read the laboratory result in the table below.
+
+| field | value |
+| --- | --- |
+| Patient sex | F |
+| Admission type | EMERGENCY |
+| Admission diagnosis | STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES |
+| Laboratory test | Creatinine |
+| Fluid | Blood |
+| Category | Chemistry |
+| Measured value | 0.5 mg/dL |
+| Abnormal flag | not available |
+
+Task: Write one short, patient-friendly explanation of what this result may mean for the body.
+Rules:
+- Use simple language.
+- Use cautious wording such as may suggest, can suggest, may reflect, or appears.
+- Do not diagnose disease.
+- Do not recommend treatment.
+- Keep the answer to one or two short sentences.<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+","This result may suggest that the kidneys are functioning normally, as the creatinine level in the blood is within a typical range. However, it's essential to consider the individual's overall health and other test results to get a complete picture.",- Creatinine: 0.5 mg/dL - Appears generally within the expected range for body chemistry balance.
+585,123154,50931,Glucose,Blood,Chemistry,2345-7,2142-11-10 19:58:00,114.0,114.0,mg/dL,abnormal,F,EMERGENCY,STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES,"Patient sex: F
+Admission type: EMERGENCY
+Admission diagnosis: STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES
+
+Laboratory test: Glucose
+Fluid: Blood
+Category: Chemistry
+Measured value: 114.0 mg/dL
+Abnormal flag: abnormal
+
+Task: Generate a short medical explanation of this laboratory result.","<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+Cutting Knowledge Date: December 2023
+Today Date: 26 Jul 2024
+
+You produce concise, patient-friendly explanations of laboratory results. Use cautious wording, avoid diagnosis and do not recommend treatment.<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+Read the laboratory result in the table below.
+
+| field | value |
+| --- | --- |
+| Patient sex | F |
+| Admission type | EMERGENCY |
+| Admission diagnosis | STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES |
+| Laboratory test | Glucose |
+| Fluid | Blood |
+| Category | Chemistry |
+| Measured value | 114.0 mg/dL |
+| Abnormal flag | abnormal |
+
+Task: Write one short, patient-friendly explanation of what this result may mean for the body.
+Rules:
+- Use simple language.
+- Use cautious wording such as may suggest, can suggest, may reflect, or appears.
+- Do not diagnose disease.
+- Do not recommend treatment.
+- Keep the answer to one or two short sentences.<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+","This blood test result may suggest that your blood sugar level is higher than what is typically considered normal. This can be a sign that your body may be producing more glucose than it needs, or that your body may not be using it properly.",- Glucose: 114.0 mg/dL - May suggest a change in blood sugar balance.
+585,123154,50954,Lactate Dehydrogenase (LD),Blood,Chemistry,2532-0,2142-11-10 19:58:00,185.0,185.0,IU/L,,F,EMERGENCY,STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES,"Patient sex: F
+Admission type: EMERGENCY
+Admission diagnosis: STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES
+
+Laboratory test: Lactate Dehydrogenase (LD)
+Fluid: Blood
+Category: Chemistry
+Measured value: 185.0 IU/L
+Abnormal flag: nan
+
+Task: Generate a short medical explanation of this laboratory result.","<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+Cutting Knowledge Date: December 2023
+Today Date: 26 Jul 2024
+
+You produce concise, patient-friendly explanations of laboratory results. Use cautious wording, avoid diagnosis and do not recommend treatment.<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+Read the laboratory result in the table below.
+
+| field | value |
+| --- | --- |
+| Patient sex | F |
+| Admission type | EMERGENCY |
+| Admission diagnosis | STATUS POST MOTOR VEHICLE ACCIDENT WITH INJURIES |
+| Laboratory test | Lactate Dehydrogenase (LD) |
+| Fluid | Blood |
+| Category | Chemistry |
+| Measured value | 185.0 IU/L |
+| Abnormal flag | not available |
+
+Task: Write one short, patient-friendly explanation of what this result may mean for the body.
+Rules:
+- Use simple language.
+- Use cautious wording such as may suggest, can suggest, may reflect, or appears.
+- Do not diagnose disease.
+- Do not recommend treatment.
+- Keep the answer to one or two short sentences.<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+","This result may suggest that the body has experienced some tissue damage, possibly due to the recent motor vehicle accident. The lactate dehydrogenase (LD) level in the blood is higher than what is typically considered normal, which can be a sign of this type of damage.",- Lactate Dehydrogenase (LD): 185.0 IU/L - Appears generally within the expected range for body chemistry balance.

@@ -1,0 +1,18 @@
+{
+  "input": "llama\\outputs\\tabular_prompt_approach\\llama_tabular_base_outputs.csv",
+  "model_id": null,
+  "run_model": false,
+  "format_only": false,
+  "folds": 5,
+  "seed": 42,
+  "rows_evaluated": 10,
+  "tablellm_prompt": "text",
+  "outputs": {
+    "results": "tablellm\\outputs\\llama_tabular_base_eval\\tablellm_cv_results.csv",
+    "summary": "tablellm\\outputs\\llama_tabular_base_eval\\tablellm_cv_summary.csv",
+    "charts": [
+      "tablellm\\outputs\\llama_tabular_base_eval\\tablellm_cv_fold_scores.png",
+      "tablellm\\outputs\\llama_tabular_base_eval\\tablellm_cv_operation_scores.png"
+    ]
+  }
+}

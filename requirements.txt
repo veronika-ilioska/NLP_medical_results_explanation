@@ -24,6 +24,3 @@ python-dotenv
 openai
 tenacity
 
-# Notebook support
-jupyter
-ipykernel

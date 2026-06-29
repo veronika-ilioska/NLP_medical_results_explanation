@@ -25,6 +25,14 @@ python -m pip install -U pip
 pip install -r requirements.txt
 ```
 
+Notebook support is optional. On Windows, especially inside OneDrive paths,
+Jupyter can hit long path limits while installing lab extensions. Install it
+only if you need to run notebooks locally:
+
+```powershell
+pip install -r requirements-notebook.txt
+```
+
 For gated Hugging Face models:
 
 ```powershell
@@ -129,6 +137,22 @@ python llama\scripts\test_llama_lora.py `
   --output-csv llama\outputs\llama_tabular_outputs.csv `
   --max-rows 10 `
   --max-new-tokens 200
+```
+
+Generate base Llama outputs from the same rows with an explicit table-style prompt,
+without loading a LoRA adapter:
+
+```powershell
+python llama\scripts\generate_llama_tabular_base.py `
+  --input data\mimic_labs_20_for_testing.csv `
+  --output llama\outputs\llama_tabular_base_outputs.csv `
+  --max-rows 10
+```
+
+Notebook version:
+
+```text
+llama/notebooks/generate_llama_tabular_base.ipynb
 ```
 
 ## Silver Targets
